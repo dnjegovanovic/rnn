@@ -100,8 +100,8 @@ def create_dataset():
     for example in ds_train.shuffle(1000).take(5):
         print('Sequence length:', example[0].shape)
         
-    train_data = ds_train.padded_batch(32, padded_shapse=([-1],[]))
-    valid_data = ds_valid.padded_batch(32, padded_shapse=([-1],[]))
-    test_data = ds_test.padded_batch(32, padded_shapse=([-1],[]))
+    train_data = ds_train.padded_batch(32, padded_shapes=([-1],[]))
+    valid_data = ds_valid.padded_batch(32, padded_shapes=([-1],[]))
+    test_data = ds_test.padded_batch(32, padded_shapes=([-1],[]))
     
-    return train_data, valid_data, test_data
+    return train_data, valid_data, test_data, token_counts
