@@ -1,13 +1,17 @@
+import tensorflow as tf
+import matplotlib.pyplot as plt
+import os
+import argparse
 from simpleRNN import simplernn
 from IMDbExample import dataprepare as dp
 from IMDbExample.model import models
-import matplotlib.pyplot as plt
-import tensorflow as tf
-import os
+
+from GenerateText.scripts import dataprocessing as gtdp
+
 # os.environ["TF_FORCE_GPU_ALLOW_GROWTH"]="true"
 
 
-def train_lstm_bidirect():
+def test_imbd():
 
     batch_size = 32
     embedding_dim = 20
@@ -56,5 +60,17 @@ def train_lstm_bidirect():
     # plt.show()
 
 
+def test_generate_text():
+    ds = gtdp.prepare_data()
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--test", type=int, default=0,
+                    help="Choose to test text generate model == 0 or IMDB model == 1")
+args = parser.parse_args()
+
 if __name__ == "__main__":
-    train_lstm_bidirect()
+    if args.test == 0:
+        test_generate_text()
+    else:
+        test_imbd()
