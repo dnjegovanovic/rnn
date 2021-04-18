@@ -1,5 +1,6 @@
+import os
 import tensorflow as tf
-
+import matplotlib.pyplot as plt
 from .scripts import dataprocessing
 from .models import model
 
@@ -26,16 +27,16 @@ def train():
             from_logits=True
         ))
 
-    modelgt.fit(ds, epochs=20)
+    history = modelgt.fit(ds, epochs=10)
     if not os.path.exists('modelsGT'):
         os.mkdir('modelsGT')
 
-    bi_lstm_model.save('modelsGT/generate-text.h5')
+    modelgt.save('modelsGT/generate-text.h5')
 
     plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
+    # plt.plot(history.history['val_loss'])
     plt.title('model accuracy')
     plt.ylabel('loss')
-    plt.xlabel('val_loss')
-    plt.legend(['train', 'test'], loc='upper left')
+    # plt.xlabel('val_loss')
+    #plt.legend(['train', 'test'], loc='upper left')
     plt.savefig('generate_text_test_01.png')
