@@ -70,4 +70,4 @@ def prepare_data(path=r'.//GenerateText//data//1268-0.txt', seq_lenght=40, batch
 
     ds = ds_seq.shuffle(buffer_size).batch(batch_size)
 
-    return ds
+    return ds, char_array
