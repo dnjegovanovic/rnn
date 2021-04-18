@@ -6,7 +6,7 @@ from .models import model
 
 
 def train():
-    ds, char_array = dataprocessing.prepare_data()
+    ds, char_array, char2int = dataprocessing.prepare_data()
 
     charset_size = len(char_array)
     embedding_dim = 256
